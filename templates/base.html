@@ -1,29 +1,129 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		  .sidenav {
+			  height: 100%;
+			  width: 200px;
+			  position: fixed;
+			  z-index: 1;
+			  top: 0;
+			  left: 0;
+			  background-color: #111;
+			  overflow-x: hidden;
+			  padding-top: 20px;
+			}
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+			/* Style the sidenav links and the dropdown button */
+			.sidenav a, .dropdown-btn {
+			  padding: 6px 8px 6px 16px;
+			  text-decoration: none;
+			  font-size: 20px;
+			  color: #818181;
+			  display: block;
+			  border: none;
+			  background: none;
+			  width:100%;
+			  text-align: left;
+			  cursor: pointer;
+			  outline: none;
+			}
 
-    <title>Krishivdemy</title>
-  </head>
-  <body>
-  	<div class="container">
-		{% block content %}{% endblock %}
+			/* On mouse-over */
+			.sidenav a:hover, .dropdown-btn:hover {
+			  color: #f1f1f1;
+			}
+
+			/* Main content */
+			.main {
+			  margin-left: 200px; /* Same as the width of the sidenav */
+			  font-size: 20px; /* Increased text to enable scrolling */
+			  padding: 0px 10px;
+			}
+
+			/* Add an active class to the active dropdown button */
+			.active {
+			  background-color: green;
+			  color: white;
+			}
+
+			/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+			.dropdown-container {
+			  display: none;
+			  background-color: #262626;
+			  padding-left: 8px;
+			}
+
+			/* Optional: Style the caret down icon */
+			.fa-caret-down {
+			  float: right;
+			  padding-right: 8px;
+			}
+
+
+	</style>
+	<script>
+		function dropdown () {
+				console.log('clicked')
+		}
+	</script>
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+		  integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+	<title>Krishivdemy</title>
+</head>
+<body>
+<div class="sidebar" style="height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  transition: 0.5s;
+  margin: 20px;
+  padding: 14px;
+  border: 3px solid red;
+">
+	<style>
+		p{
+			font-weight:bold;
+		}
+		div#months1{
+			display:none;
+		}
+		div#days1{
+			display:none;
+		}
+	</style>
+	<p onclick="var element=document.getElementById('months1');if (element.style.display==='none'){
+	element.style.display='block';} else {element.style.display='none';}" id="year1">2021</p>
+	<div id="months1">
+		<p onclick="var element=document.getElementById('days1');if (element.style.display==='none'){
+	element.style.display='block';} else {element.style.display='none';}" id="month1" style="padding-left:10px;">july</p>
+		<div id="days1">
+			<p style="padding-left:25px;">5</p>
+		</div>
 	</div>
+</div>
+<div class="main">
+	{% block content %}{% endblock %}
+</div>
 
-    <!-- Optional JavaScript; choose one of the two! -->
+<!-- Optional JavaScript; choose one of the two! -->
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+		crossorigin="anonymous"></script>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
-    -->
-  </body>
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+-->
+</body>
 </html>
