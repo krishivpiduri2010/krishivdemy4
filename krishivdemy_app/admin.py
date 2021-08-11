@@ -5,3 +5,5 @@ from .models import *
 admin.site.register(Year)
 admin.site.register(Month)
 admin.site.register(Date)
+admin.site.register(Page)
+admin.site.register(Text)

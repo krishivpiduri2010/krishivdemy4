@@ -64,11 +64,13 @@
 			}
 
 
+
 	</style>
 	<script>
 		function dropdown () {
 				console.log('clicked')
 		}
+
 	</script>
 	<!-- Bootstrap CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -89,26 +91,30 @@
   border: 3px solid red;
 ">
 	<style>
-		p{
+		a{
 			font-weight:bold;
 		}
+
 	</style>
 	{% for year in years %}
-		{% for month in months %}
-			{% if month.year == year %}
-				<p onclick="if (document.getElementById('month{{month.id}}').style.display==='block'){ document.getElementById('month{{month.id}}').style.display='none';} else{document.getElementById('month{{month.id}}').style.display='block'}">{{year.year}}</p>
-				<div id="month{{month.id}}">
-					{% for day in days %}
-						{% if day.month == month %}
-							<p style="padding-left:20px;" onclick="if (document.getElementById('date{{day.id}}').style.display==='block'){ document.getElementById('date{{day.id}}').style.display='none';} else{document.getElementById('date{{day.id}}').style.display='block'}">{{month.month}}</p>
-							<div id="date{{day.id}}">
-								<p style="padding-left:40px;">{{day.date}}</p>
-							</div>
-						{% endif %}
-					{% endfor %}
-				</div>
-			{% endif %}
+	{% for month in months %}
+	{% if month.year == year %}
+	<p onclick="if (document.getElementById('month{{month.id}}').style.display==='block'){ document.getElementById('month{{month.id}}').style.display='none';} else{document.getElementById('month{{month.id}}').style.display='block'}">
+		{{year.year}}</p>
+	<div id="month{{month.id}}">
+		{% for day in days %}
+		{% if day.month == month %}
+		<p style="padding-left:20px;"
+		   onclick="if (document.getElementById('date{{day.id}}').style.display==='block'){ document.getElementById('date{{day.id}}').style.display='none';} else{document.getElementById('date{{day.id}}').style.display='block'}">
+			{{month.month}}</p>
+		<div id="date{{day.id}}">
+			<a style="padding-left:40px;" href="{% url 'page_view' day.pk %}">{{day.date}}</a>
+		</div>
+		{% endif %}
 		{% endfor %}
+	</div>
+	{% endif %}
+	{% endfor %}
 	{% endfor %}
 </div>
 <div class="main">
