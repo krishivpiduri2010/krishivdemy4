@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load embed_video_tags %}
 {% block content %}
 	{% for item in items %}
@@ -12,4 +13,5 @@
 			{% video item.video 'small' %}
 		{% endif %}
 	{% endfor %}
+	<img src="{% static 'testimg.jpg' %}" alt="">
 {% endblock %}
