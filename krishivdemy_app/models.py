@@ -1,3 +1,4 @@
+from embed_video.fields import EmbedVideoField
 from django.db import models
 
 
@@ -18,6 +19,25 @@ class Date(models.Model):
 
 class Page(models.Model):
     date = models.ForeignKey(Date, on_delete=models.CASCADE)
+
+
 class Text(models.Model):
-    page=models.ForeignKey(Page,on_delete=models.CASCADE,null=True)
-    text=models.TextField()
+    type = models.CharField(max_length=7, default='text',null=True)
+    order = models.IntegerField(null=True)
+    page = models.ForeignKey(Page, on_delete=models.CASCADE, null=True)
+    text = models.TextField()
+
+
+class Video(models.Model):
+    type = models.CharField(max_length=7, default='video',null=True)
+    order = models.IntegerField(null=True)
+    page = models.ForeignKey(Page, on_delete=models.CASCADE, null=True)
+    video = EmbedVideoField()
+
+
+class Link(models.Model):
+    type = models.CharField(max_length=7, default='link',null=True)
+    order = models.IntegerField(null=True)
+    page = models.ForeignKey(Page, on_delete=models.CASCADE, null=True)
+    text = models.TextField()
+    url = models.CharField(max_length=400)

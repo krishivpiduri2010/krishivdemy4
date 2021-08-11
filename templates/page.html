@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
+{% load embed_video_tags %}
 {% block content %}
-	{% for text in texts %}
-		<p>{{text.text}}</p>
+	{% for item in items %}
+		{% if item.type == 'text' %}
+			<p>{{item.text}}</p>
+		{% endif %}
+		{% if item.type == 'link' %}
+			<a href="{{item.url}}">{{item.text}}</a>
+		{% endif %}
+		{% if item.type == 'video' %}
+			{% video item.video 'small' %}
+		{% endif %}
 	{% endfor %}
 {% endblock %}
