@@ -92,22 +92,24 @@
 		p{
 			font-weight:bold;
 		}
-		div#months1{
-			display:none;
-		}
-		div#days1{
-			display:none;
-		}
 	</style>
-	<p onclick="var element=document.getElementById('months1');if (element.style.display==='none'){
-	element.style.display='block';} else {element.style.display='none';}" id="year1">2021</p>
-	<div id="months1">
-		<p onclick="var element=document.getElementById('days1');if (element.style.display==='none'){
-	element.style.display='block';} else {element.style.display='none';}" id="month1" style="padding-left:10px;">july</p>
-		<div id="days1">
-			<p style="padding-left:25px;">5</p>
-		</div>
-	</div>
+	{% for year in years %}
+		{% for month in months %}
+			{% if month.year == year %}
+				<p onclick="if (document.getElementById('month{{month.id}}').style.display==='block'){ document.getElementById('month{{month.id}}').style.display='none';} else{document.getElementById('month{{month.id}}').style.display='block'}">{{year.year}}</p>
+				<div id="month{{month.id}}">
+					{% for day in days %}
+						{% if day.month == month %}
+							<p style="padding-left:20px;" onclick="if (document.getElementById('date{{day.id}}').style.display==='block'){ document.getElementById('date{{day.id}}').style.display='none';} else{document.getElementById('date{{day.id}}').style.display='block'}">{{month.month}}</p>
+							<div id="date{{day.id}}">
+								<p style="padding-left:40px;">{{day.date}}</p>
+							</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+			{% endif %}
+		{% endfor %}
+	{% endfor %}
 </div>
 <div class="main">
 	{% block content %}{% endblock %}
