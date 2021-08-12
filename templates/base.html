@@ -101,16 +101,16 @@
 		}
 	</style>
 	{% for year in years %}
-	{% for month in months %}
-	{% if month.year == year %}
 	<p onclick="if (document.getElementById('month{{month.id}}').style.display==='block'){ document.getElementById('month{{month.id}}').style.display='none';} else{document.getElementById('month{{month.id}}').style.display='block'}">
 		{{year.year}}</p>
+	{% for month in months %}
+	{% if month.year == year %}
 	<div id="month{{month.id}}">
-		{% for day in days %}
-		{% if day.month == month %}
 		<p style="padding-left:20px;"
 		   onclick="if (document.getElementById('date{{day.id}}').style.display==='block'){ document.getElementById('date{{day.id}}').style.display='none';} else{document.getElementById('date{{day.id}}').style.display='block'}">
 			{{month.month}}</p>
+		{% for day in days %}
+		{% if day.month == month %}
 		<div id="date{{day.id}}">
 			<a style="padding-left:40px;" href="{% url 'page_view' day.pk %}">{{day.date}}</a>
 		</div>
