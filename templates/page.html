@@ -13,8 +13,7 @@
 			{% video item.video 'small' %}
 		{% endif %}
 		{% if item.type == 'image' %}
-			<img src="{% static '../testimg.jpg' %}" alt="">
+			<img src="{% static item.image %}" alt="">
 		{% endif %}
 	{% endfor %}
-	<img src="{% static 'testimg.jpg' %}" alt="">
 {% endblock %}
