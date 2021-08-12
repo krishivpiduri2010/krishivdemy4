@@ -22,22 +22,29 @@ class Page(models.Model):
 
 
 class Text(models.Model):
-    type = models.CharField(max_length=7, default='text',null=True)
+    type = models.CharField(max_length=7, default='text', null=True)
     order = models.IntegerField(null=True)
     page = models.ForeignKey(Page, on_delete=models.CASCADE, null=True)
     text = models.TextField()
 
 
 class Video(models.Model):
-    type = models.CharField(max_length=7, default='video',null=True)
+    type = models.CharField(max_length=7, default='video', null=True)
     order = models.IntegerField(null=True)
     page = models.ForeignKey(Page, on_delete=models.CASCADE, null=True)
     video = EmbedVideoField()
 
 
 class Link(models.Model):
-    type = models.CharField(max_length=7, default='link',null=True)
+    type = models.CharField(max_length=7, default='link', null=True)
     order = models.IntegerField(null=True)
     page = models.ForeignKey(Page, on_delete=models.CASCADE, null=True)
     text = models.TextField()
     url = models.CharField(max_length=400)
+
+
+class Image(models.Model):
+    type = models.CharField(max_length=7, default='image', null=True)
+    order = models.IntegerField(null=True)
+    page = models.ForeignKey(Page, on_delete=models.CASCADE, null=True)
+    image = models.CharField(max_length=40,null=True)
